@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/shared/SectionHero.astro';
+import PatternDivider from '../components/shared/PatternDivider.astro';
+---
+
+<BaseLayout
+  title="Community Impact & Support | T-MAC UK"
+  description="Discover how T-MAC UK strengthens communities through music, culture, and engagement — and how you can support our work."
+  canonicalPath="/funding"
+>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <SectionHero
+    title="Community Impact & Support"
+    subtitle="Celebrating African heritage, strengthening communities, and creating opportunities through music, culture, and community engagement."
+    backgroundImage="/images/placeholders/community-impact-hero.jpg"
+  />
+
+  <PatternDivider />
+
+  <!-- ── 1. Our Impact ──────────────────────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold mb-4">Our Impact</h2>
+        <p class="text-cream/60 text-lg max-w-2xl mx-auto">
+          How T-MAC UK contributes to cultural preservation, community cohesion, wellbeing, and inclusion.
+        </p>
+      </div>
+
+      <!-- 4-card placeholder grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: '🎵', heading: 'Cultural Preservation', label: 'Content coming soon' },
+          { icon: '🤝', heading: 'Community Cohesion',   label: 'Content coming soon' },
+          { icon: '💛', heading: 'Wellbeing',            label: 'Content coming soon' },
+          { icon: '🌍', heading: 'Inclusion',            label: 'Content coming soon' },
+        ].map(card => (
+          <div class="border border-gold/20 rounded-xl p-6 flex flex-col items-center text-center gap-3 hover:border-gold/50 transition-colors">
+            <span class="text-4xl" aria-hidden="true">{card.icon}</span>
+            <h3 class="font-serif text-lg text-gold">{card.heading}</h3>
+            <p class="text-cream/30 text-sm italic">{card.label}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- ── 2. Community Engagement ───────────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold mb-4">Community Engagement</h2>
+        <p class="text-cream/60 text-lg max-w-2xl mx-auto">
+          Outreach activities, performances, festivals, workshops, and community events.
+        </p>
+      </div>
+
+      <!-- Placeholder activity cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { icon: '🎤', heading: 'Live Performances' },
+          { icon: '🥁', heading: 'Workshops & Masterclasses' },
+          { icon: '🎪', heading: 'Festivals & Fairs' },
+          { icon: '🏫', heading: 'School Visits' },
+          { icon: '🏡', heading: 'Community Events' },
+          { icon: '🌐', heading: 'Cultural Outreach' },
+        ].map(item => (
+          <div class="border border-gold/20 rounded-xl p-6 flex items-center gap-4 hover:border-gold/50 transition-colors group">
+            <span class="text-3xl flex-shrink-0" aria-hidden="true">{item.icon}</span>
+            <div>
+              <h3 class="font-serif text-lg text-gold mb-1">{item.heading}</h3>
+              <p class="text-cream/30 text-sm italic">Details coming soon</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <PatternDivider />
+
+  <!-- ── 3. Support Our Work ────────────────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold mb-4">Support Our Work</h2>
+        <p class="text-cream/60 text-lg max-w-2xl mx-auto">
+          Your support helps us hire rehearsal venues, purchase equipment, create costumes, and travel to performances. Every contribution makes a difference.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Donate card -->
+        <div class="border border-gold/20 rounded-xl p-8 hover:border-gold/50 transition-colors">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-3xl" aria-hidden="true">💛</span>
+            <h3 class="font-serif text-2xl text-gold">Make a Donation</h3>
+          </div>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">
+            If you'd like to support T-MAC UK financially, you can make a one-off or regular donation via bank transfer. All donations go directly towards our running costs, including venue hire, musical equipment, and community event expenses.
+          </p>
+          <div class="bg-white/5 border border-gold/10 rounded-lg p-5 mb-6">
+            <p class="text-gold text-xs uppercase tracking-wide mb-3 font-semibold">Bank Transfer Details</p>
+            <div class="space-y-2 text-cream/80 text-sm">
+              <p><span class="text-cream/50">Account Name:</span> The Midlands African Choir</p>
+              <p><span class="text-cream/50">Sort Code:</span> 30-54-66</p>
+              <p><span class="text-cream/50">Account Number:</span> 77940268</p>
+              <p><span class="text-cream/50">Reference:</span> Donation</p>
+            </div>
+          </div>
+          <p class="text-cream/40 text-xs italic">
+            Please use "Donation" as your payment reference. For Gift Aid eligibility, contact us at themidlandsafricanchoir@gmail.com
+          </p>
+        </div>
+
+        <!-- Partner card -->
+        <div class="border border-gold/20 rounded-xl p-8 hover:border-gold/50 transition-colors">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-3xl" aria-hidden="true">🤝</span>
+            <h3 class="font-serif text-2xl text-gold">Partner With Us</h3>
+          </div>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">
+            We're always looking for community partners — whether that's schools, faith organisations, cultural centres, local businesses, or event organisers. If you'd like to collaborate with T-MAC UK, we'd love to hear from you.
+          </p>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">
+            Partnerships can include joint community events, workshop delivery, performance bookings, venue sharing, or simply helping us reach new audiences.
+          </p>
+          <div class="bg-white/5 border border-gold/10 rounded-lg p-5">
+            <p class="text-gold text-xs uppercase tracking-wide mb-3 font-semibold">Get in Touch</p>
+            <p class="text-cream/80 text-sm">
+              Email us at{' '}
+              <a href="mailto:themidlandsafricanchoir@gmail.com" class="text-gold hover:underline">
+                themidlandsafricanchoir@gmail.com
+              </a>
+              {' '}with a brief description of your organisation and how you'd like to work together.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- ── 4. Governance & Policies ──────────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold mb-4">Governance & Policies</h2>
+        <p class="text-cream/60 text-lg max-w-2xl mx-auto">
+          Our organisational documents reflecting our commitment to safe, inclusive, and responsible practice.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          { title: 'Safeguarding Policy',               icon: '🛡️', file: '/policies/safeguarding-policy.pdf' },
+          { title: 'Equal Opportunities Policy',        icon: '⚖️', file: '/policies/equal-opportunities-policy.pdf' },
+          { title: 'Health & Safety Policy',            icon: '🏥', file: '/policies/health-safety-policy.pdf' },
+          { title: 'Privacy Policy (GDPR)',             icon: '🔒', file: '/policies/privacy-policy.pdf' },
+          { title: 'Complaints Policy',                 icon: '📝', file: '/policies/complaints-policy.pdf' },
+        ].map(doc => (
+          <a
+            href={doc.file}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-gold/20 rounded-xl p-5 flex items-center gap-4 hover:border-gold/60 hover:bg-gold/5 transition-colors group"
+          >
+            <span class="text-2xl flex-shrink-0" aria-hidden="true">{doc.icon}</span>
+            <div class="flex-1">
+              <p class="text-cream/90 font-medium text-sm group-hover:text-gold transition-colors">{doc.title}</p>
+              <p class="text-cream/40 text-xs mt-0.5">Version 1.0 · Adopted 2026</p>
+            </div>
+            <!-- Download icon -->
+            <svg class="w-5 h-5 text-gold/40 group-hover:text-gold flex-shrink-0 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <PatternDivider />
+
+  <!-- ── 5. Testimonials & Success Stories ─────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold mb-4">Testimonials & Success Stories</h2>
+        <p class="text-cream/60 text-lg max-w-2xl mx-auto">
+          Voices from choir members, audiences, partners, and the communities we serve.
+        </p>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Walson's testimonial (real) -->
+        <div class="border border-gold/30 rounded-xl p-7 relative">
+          <span class="font-serif text-5xl text-gold/30 absolute top-3 left-5" aria-hidden="true">&ldquo;</span>
+          <p class="mt-8 text-cream/90 text-lg leading-relaxed italic">
+            It's been a thrilling experience meeting people who share the same values but come from different nationalities. T-MAC UK feels like a family — we sing, we laugh, we grow together. Music truly is the language that unites us all.
+          </p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center">
+              <span class="text-gold font-bold text-sm">W</span>
+            </div>
+            <div>
+              <p class="text-gold font-semibold text-sm">Walson</p>
+              <p class="text-cream/50 text-xs">Secretary General &bull; Bass</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder cards for future testimonials -->
+        {[1, 2, 3].map(n => (
+          <div class="border border-gold/15 rounded-xl p-7 relative">
+            <span class="font-serif text-5xl text-gold/15 absolute top-3 left-5" aria-hidden="true">&ldquo;</span>
+            <div class="mt-6 space-y-3">
+              <div class="h-3 bg-cream/10 rounded w-full"></div>
+              <div class="h-3 bg-cream/10 rounded w-5/6"></div>
+              <div class="h-3 bg-cream/10 rounded w-4/6"></div>
+            </div>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-gold/15"></div>
+              <div>
+                <div class="h-2.5 bg-cream/15 rounded w-24 mb-1.5"></div>
+                <div class="h-2 bg-cream/10 rounded w-16"></div>
+              </div>
+            </div>
+            <p class="text-cream/20 text-xs italic mt-3 text-center">Testimonial coming soon</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- ── 6. Get Involved ────────────────────────────────────── -->
+  <section class="bg-black py-20 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-4">Get Involved</h2>
+      <p class="text-cream/70 text-lg leading-relaxed mb-10">
+        Whether you want to sing with us, support our mission, partner with us, or simply spread the word —
+        there is a place for you in the T-MAC UK community.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        {[
+          { label: 'Join the Choir', href: '/join',      style: 'bg-gold text-black' },
+          { label: 'Book Us',        href: '/book',      style: 'border border-gold text-gold' },
+          { label: 'Donate',         href: '#support',   style: 'border border-gold/40 text-gold/70' },
+          { label: 'Get in Touch',   href: `mailto:themidlandsafricanchoir@gmail.com`, style: 'border border-gold/40 text-gold/70' },
+        ].map(btn => (
+          <a
+            href={btn.href}
+            class={`${btn.style} font-semibold px-4 py-3 rounded min-h-[44px] inline-flex items-center justify-center text-sm hover:opacity-90 transition-opacity`}
+          >
+            {btn.label}
+          </a>
+        ))}
+      </div>
+
+      <p class="text-cream/40 text-sm">
+        For funding, sponsorship, or partnership enquiries contact us at{' '}
+        <a
+          href="mailto:themidlandsafricanchoir@gmail.com"
+          class="text-gold hover:underline"
+        >
+          themidlandsafricanchoir@gmail.com
+        </a>
+      </p>
+
+    </div>
+  </section>
+
+</BaseLayout>

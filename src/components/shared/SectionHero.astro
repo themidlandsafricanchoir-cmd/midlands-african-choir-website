@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  backgroundImage: string;
+  imageAlt?: string;
+  /** Height class — defaults to 'h-[60vh]' */
+  heightClass?: string;
+  /** Object position — defaults to 'object-cover object-top' */
+  objectPosition?: string;
+}
+
+const {
+  title,
+  subtitle,
+  backgroundImage,
+  imageAlt,
+  heightClass = 'h-[60vh]',
+  objectPosition = 'object-cover object-top',
+} = Astro.props;
+const resolvedAlt = imageAlt || title;
+---
+
+<section class={`relative w-full ${heightClass} overflow-hidden bg-black`}>
+
+  <img
+    src={backgroundImage}
+    alt={resolvedAlt}
+    width="1920"
+    height="1080"
+    loading="eager"
+    fetchpriority="high"
+    class={`absolute inset-0 w-full h-full ${objectPosition}`}
+  />
+
+  <!-- Subtle dark gradient at bottom so text is always readable -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+  <!-- Text overlaid on the image, anchored to the bottom -->
+  <div class="absolute bottom-0 left-0 right-0 px-6 pb-10 text-center">
+    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="mt-3 text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+        {subtitle}
+      </p>
+    )}
+  </div>
+
+</section>

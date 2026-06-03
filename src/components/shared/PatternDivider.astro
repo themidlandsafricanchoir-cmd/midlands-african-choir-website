@@ -1,0 +1,32 @@
+---
+/**
+ * PatternDivider.astro
+ *
+ * Renders a full-width SVG pattern as a section divider.
+ * Uses African-inspired geometric patterns (kente or adinkra).
+ *
+ * Requirements: 2.4, 5.6
+ */
+
+import kenteRaw from '../../assets/patterns/kente-divider.svg?raw';
+import adinkraRaw from '../../assets/patterns/adinkra-accent.svg?raw';
+
+interface Props {
+  /** Which pattern to render. Defaults to 'kente'. */
+  variant?: 'kente' | 'adinkra';
+  /** Accessible label for the decorative divider. */
+  ariaLabel?: string;
+}
+
+const { variant = 'kente', ariaLabel } = Astro.props;
+
+const svgContent = variant === 'adinkra' ? adinkraRaw : kenteRaw;
+const defaultLabel = variant === 'adinkra' ? 'Adinkra pattern divider' : 'Kente pattern divider';
+---
+
+<div
+  class="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden"
+  role="img"
+  aria-label={ariaLabel ?? defaultLabel}
+  set:html={svgContent}
+/>

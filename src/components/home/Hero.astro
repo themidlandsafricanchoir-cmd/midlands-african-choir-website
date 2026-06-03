@@ -1,0 +1,44 @@
+---
+// Hero section for the Home page
+// Requirement 4.1: Full-viewport hero with background image, h1, tagline, and two CTA buttons
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+  <!-- Background image — no overlay, full clarity -->
+  <img
+    src="/images/placeholders/Choir rehearsal.jpeg"
+    alt="Midlands African Choir performing on stage"
+    width="1920"
+    height="1080"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+      The Midlands African Choir UK
+    </h1>
+
+    <p class="text-white text-lg md:text-xl lg:text-2xl mb-10 max-w-2xl mx-auto drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+      Celebrating African heritage through the power of choral music in the Midlands
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a
+        href="/performances"
+        class="bg-gold text-navy font-bold px-8 py-3 rounded min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-base hover:bg-gold/90 transition-colors"
+      >
+        Watch Performances
+      </a>
+
+      <a
+        href="/join"
+        class="border-2 border-cream text-cream font-bold px-8 py-3 rounded min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-base hover:bg-cream hover:text-navy transition-colors"
+      >
+        Join the Choir
+      </a>
+    </div>
+  </div>
+</section>

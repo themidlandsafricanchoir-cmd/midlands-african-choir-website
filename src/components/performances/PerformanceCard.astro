@@ -1,0 +1,89 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  description: string;
+  type: 'video' | 'audio';
+  youtubeId?: string;
+  audioUrl?: string;
+  thumbnailUrl?: string;
+}
+
+const { title, date, description, type, youtubeId, audioUrl, thumbnailUrl } = Astro.props;
+
+// Validate youtubeId: exactly 11 alphanumeric, hyphen, or underscore characters
+const YOUTUBE_ID_PATTERN = /^[\w\-]{11}$/;
+const isValidYoutubeId = youtubeId ? YOUTUBE_ID_PATTERN.test(youtubeId) : false;
+
+// Validate audioUrl: must start with https://
+const isValidAudioUrl = audioUrl ? audioUrl.startsWith('https://') : false;
+
+// Determine which media to render
+const showVideo = type === 'video' && isValidYoutubeId;
+const showAudio = type === 'audio' && isValidAudioUrl;
+const showComingSoon = !showVideo && !showAudio;
+
+// Format date: e.g. "15 December 2024"
+const formattedDate = date.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<article class="bg-cream rounded-lg shadow-md overflow-hidden flex flex-col">
+  <!-- Media section -->
+  {showVideo && (
+    <div class="w-full">
+      {thumbnailUrl && (
+        <img
+          src={thumbnailUrl}
+          alt={`Thumbnail for ${title}`}
+          width="640"
+          height="360"
+          loading="lazy"
+          class="w-full object-cover"
+        />
+      )}
+      <div class="relative w-full aspect-video">
+        <iframe
+          src={`https://www.youtube.com/embed/${youtubeId}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+          class="absolute inset-0 w-full h-full"
+        ></iframe>
+      </div>
+    </div>
+  )}
+
+  {showAudio && (
+    <div class="p-4 bg-navy/5">
+      <audio controls src={audioUrl} class="w-full">
+        <p>Your browser does not support audio playback.</p>
+      </audio>
+    </div>
+  )}
+
+  {showComingSoon && (
+    <div class="flex items-center justify-center p-8 bg-gold/10">
+      <span class="inline-block px-4 py-2 rounded-full bg-gold text-navy font-sans font-semibold text-sm uppercase tracking-wide">
+        Coming Soon
+      </span>
+    </div>
+  )}
+
+  <!-- Card content -->
+  <div class="p-6 flex flex-col gap-3 flex-1">
+    <h3 class="font-serif text-xl font-bold text-navy leading-snug">
+      {title}
+    </h3>
+    <time datetime={date.toISOString()} class="text-sm font-sans text-terracotta font-medium">
+      {formattedDate}
+    </time>
+    <p class="font-sans text-navy/80 text-sm leading-relaxed">
+      {description}
+    </p>
+  </div>
+</article>

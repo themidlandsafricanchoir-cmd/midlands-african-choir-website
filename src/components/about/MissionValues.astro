@@ -1,0 +1,76 @@
+---
+// MissionValues.astro — Our Mission & Values section for the About page
+// Requirement 5.3: at least 3 core values as styled cards with icons
+---
+
+<section class="py-16 bg-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-3xl md:text-4xl text-gold text-center mb-12">
+      Our Mission &amp; Values
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Cultural Celebration -->
+      <div class="bg-black border border-gold/30 rounded-lg shadow-md p-6 flex flex-col items-start">
+        <div class="mb-4 text-gold">
+          <!-- Music note SVG icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 3v10.55A4 4 0 1 0 11 17V7h4V3H9zm-2 16a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3">Cultural Celebration</h3>
+        <p class="text-cream/80 leading-relaxed">
+          We celebrate and preserve the rich musical heritage of Africa, bringing its rhythms,
+          harmonies, and stories to audiences across the Midlands.
+        </p>
+      </div>
+
+      <!-- Community Unity -->
+      <div class="bg-black border border-gold/30 rounded-lg shadow-md p-6 flex flex-col items-start">
+        <div class="mb-4 text-gold">
+          <!-- People/group SVG icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3">Community Unity</h3>
+        <p class="text-cream/80 leading-relaxed">
+          We believe in the power of music to unite people across cultures, backgrounds, and
+          generations, fostering a sense of belonging for all.
+        </p>
+      </div>
+
+      <!-- Excellence in Performance -->
+      <div class="bg-black border border-gold/30 rounded-lg shadow-md p-6 flex flex-col items-start">
+        <div class="mb-4 text-gold">
+          <!-- Star SVG icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3">Excellence in Performance</h3>
+        <p class="text-cream/80 leading-relaxed">
+          We are committed to the highest standards of musical excellence, continually developing
+          our craft and delivering memorable performances.
+        </p>
+      </div>
+
+      <!-- Ubuntu -->
+      <div class="bg-black border border-gold/30 rounded-lg shadow-md p-6 flex flex-col items-start">
+        <div class="mb-4 text-gold">
+          <!-- Heart SVG icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3">Ubuntu</h3>
+        <p class="text-cream/80 leading-relaxed">
+          Guided by the African philosophy of Ubuntu — 'I am because we are' — we support one
+          another and our wider community.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import AboutSummary from '../components/home/AboutSummary.astro';
+import PatternDivider from '../components/shared/PatternDivider.astro';
+---
+
+<BaseLayout
+  title="T-MAC UK | The Midlands African Choir"
+  description="Celebrating African heritage through music, culture and community in the Midlands."
+  canonicalPath="/"
+>
+  <!-- 1. Full-screen hero with choir photo -->
+  <Hero />
+
+  <!-- 2. Kente pattern divider -->
+  <PatternDivider />
+
+  <!-- 3. Who We Are -->
+  <AboutSummary />
+
+  <!-- 4. Pattern divider -->
+  <PatternDivider variant="adinkra" />
+
+  <!-- 5. Impact Stats -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-12">Our Impact</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <p class="font-serif text-5xl md:text-6xl text-gold font-bold">2026</p>
+          <p class="text-cream/80 mt-2 text-sm uppercase tracking-wide">Founded</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl md:text-6xl text-gold font-bold">18+</p>
+          <p class="text-cream/80 mt-2 text-sm uppercase tracking-wide">Members</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl md:text-6xl text-gold font-bold">5+</p>
+          <p class="text-cream/80 mt-2 text-sm uppercase tracking-wide">Nationalities</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl md:text-6xl text-gold font-bold">∞</p>
+          <p class="text-cream/80 mt-2 text-sm uppercase tracking-wide">Passion</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Pattern divider -->
+  <PatternDivider />
+
+  <!-- 7. Join Our Community CTA -->
+  <section class="bg-black py-20 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-6">Join Our Community</h2>
+      <p class="text-cream/80 text-lg mb-10 leading-relaxed">
+        Are you passionate about African music and culture? We welcome singers of all experience levels.
+        Come and be part of something truly special.
+      </p>
+      <a
+        href="/join"
+        class="inline-block bg-gold text-black font-bold px-10 py-4 rounded-md text-lg hover:bg-gold/90 transition-colors min-h-[44px]"
+      >
+        Become a Member
+      </a>
+    </div>
+  </section>
+
+  <!-- 8. Pattern divider -->
+  <PatternDivider variant="adinkra" />
+
+  <!-- 9. Latest Performances preview -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-center justify-between mb-10">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold">Latest Performances</h2>
+        <a href="/performances" class="text-gold hover:underline text-sm font-medium">View All →</a>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Christmas Concert 2024 -->
+        <div class="border border-gold/20 rounded-xl overflow-hidden">
+          <div class="aspect-video bg-black/60 flex items-center justify-center">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Christmas Concert 2024"
+              class="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="p-4">
+            <p class="text-gold font-serif text-lg">Christmas Concert 2024</p>
+            <p class="text-cream/70 text-sm mt-1">Birmingham Town Hall · December 2024</p>
+          </div>
+        </div>
+        <!-- Summer Festival 2024 -->
+        <div class="border border-gold/20 rounded-xl overflow-hidden">
+          <div class="aspect-video bg-black flex items-center justify-center">
+            <div class="text-center px-6">
+              <span class="text-5xl">🎵</span>
+              <p class="text-gold font-serif mt-3">Summer Festival 2024</p>
+              <p class="text-cream/70 text-sm mt-1">Cannon Hill Park · July 2024</p>
+              <audio controls class="mt-4 w-full">
+                <source src="https://www.themidlandsafricanchoir.co.uk/audio/summer-festival-2024.mp3" type="audio/mpeg" />
+                Your browser does not support audio playback.
+              </audio>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Pattern divider -->
+  <PatternDivider />
+
+  <!-- 11. Book Us teaser -->
+  <section class="bg-black py-20 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-6">Book T-MAC UK</h2>
+      <p class="text-cream/80 text-lg mb-10 leading-relaxed">
+        Looking for a powerful, authentic African choral experience for your event?
+        Weddings, festivals, corporate events, community celebrations — we bring the music.
+      </p>
+      <a
+        href="/book"
+        class="inline-block border-2 border-gold text-gold font-bold px-10 py-4 rounded-md text-lg hover:bg-gold hover:text-black transition-colors min-h-[44px]"
+      >
+        Make an Enquiry
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

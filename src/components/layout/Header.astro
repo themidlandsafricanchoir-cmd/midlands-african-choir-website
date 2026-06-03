@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import logoSrc from '../../assets/logo.webp';
+import HamburgerMenu from './HamburgerMenu.tsx';
+import StickyHeader from './StickyHeader.tsx';
+
+const navLinks = [
+  { href: '/',             label: 'Home' },
+  { href: '/about',        label: 'About' },
+  { href: '/team',         label: 'Meet the Team' },
+  { href: '/performances', label: 'Performances' },
+  { href: '/join',         label: 'Join the Choir' },
+  { href: '/book',         label: 'Book Us' },
+  { href: '/funding',      label: 'Community Impact & Support' },
+];
+
+const currentPath = Astro.url.pathname;
+
+// Pages that have a full-bleed hero image — header starts transparent on all of them
+const heroPages = ['/', '/about', '/team', '/performances', '/join', '/book', '/funding'];
+const hasHero = heroPages.includes(currentPath) || heroPages.some(p => p !== '/' && currentPath.startsWith(p));
+
+const initialBg   = hasHero ? 'bg-transparent' : 'bg-white shadow-md';
+const initialText = hasHero ? 'text-white'      : 'text-black';
+---
+
+<header
+  id="site-header"
+  class={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${initialBg}`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20 md:h-24">
+
+      <!-- Logo -->
+      <a
+        href="/"
+        class="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
+      >
+        <div class="w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden flex items-center justify-center">
+          <Image
+            src={logoSrc}
+            alt="The Midlands African Choir logo"
+            class="w-full h-full object-contain"
+          />
+        </div>
+        <span class={`site-name hidden md:block font-serif text-xl font-semibold leading-tight ${initialText}`}>
+          T-MAC UK
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav aria-label="Main navigation" class="hidden md:flex items-center gap-6">
+        {navLinks.map(({ href, label }) => {
+          const isActive =
+            href === '/'
+              ? currentPath === '/'
+              : currentPath.startsWith(href);
+
+          return (
+            <a
+              href={href}
+              class={`nav-link text-sm font-sans font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded ${
+                isActive
+                  ? `font-bold border-b-2 border-gold text-gold`
+                  : `${initialText} hover:text-gold`
+              }`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Mobile menu -->
+      <HamburgerMenu links={navLinks} currentPath={currentPath} client:load />
+
+    </div>
+  </div>
+</header>
+
+<!-- Scroll behaviour: transparent → white -->
+<StickyHeader client:load />

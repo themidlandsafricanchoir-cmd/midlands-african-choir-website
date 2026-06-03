@@ -1,0 +1,52 @@
+---
+/**
+ * AboutSummary.astro
+ *
+ * Home page "About Us" summary section with a brief description of the choir
+ * and a "Learn More" link to the About page.
+ *
+ * Requirements: 4.2
+ */
+---
+
+<section class="relative bg-black py-16 px-4 overflow-hidden">
+
+  <div class="relative z-10 max-w-4xl mx-auto text-center lg:text-left lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+
+    <!-- Text content -->
+    <div>
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-6">
+        Who We Are
+      </h2>
+
+      <p class="font-sans text-cream/90 text-lg leading-relaxed mb-8">
+        The Midlands African Choir UK (T-MAC UK) is a vibrant community choir celebrating the rich
+        musical traditions of Africa. Based in the heart of the Midlands, we bring together singers
+        of all backgrounds to share the joy of African choral music. Our performances span gospel,
+        highlife, traditional folk songs, and contemporary African arrangements.
+      </p>
+
+      <a
+        href="/about"
+        class="inline-block bg-terracotta text-cream font-sans font-semibold px-8 py-3 rounded-md hover:bg-burgundy focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 transition-colors duration-200"
+      >
+        Learn More
+      </a>
+    </div>
+
+    <!-- African instrument image -->
+    <div class="hidden lg:flex items-center justify-center">
+      <div class="w-full h-72 rounded-xl overflow-hidden border border-gold/20">
+        <img
+          src="/images/placeholders/community-impact-hero.jpg"
+          alt="T-MAC UK community music session"
+          width="600"
+          height="400"
+          loading="lazy"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>

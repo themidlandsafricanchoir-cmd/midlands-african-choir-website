@@ -1,0 +1,66 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    label: 'TikTok',
+    href: 'https://www.tiktok.com/@themidlandsafricanchoir',
+  },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/share/1BdrZZvhP6/',
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/themidlandsafricanchoir',
+  },
+  {
+    label: 'YouTube',
+    href: 'https://youtube.com/@themidlandsafricanchoiruk',
+  },
+];
+---
+
+<footer class="bg-navy text-cream">
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center gap-6 text-center">
+
+      <!-- Choir name -->
+      <p class="text-lg font-semibold">Midlands African Choir UK</p>
+
+      <!-- Social media links -->
+      <nav aria-label="Social media links">
+        <ul class="flex flex-wrap justify-center gap-6">
+          {socialLinks.map(({ label, href }) => (
+            <li>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-gold transition-colors duration-200"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Contact email -->
+      <p>
+        <a
+          href="mailto:themidlandsafricanchoir@gmail.com"
+          class="hover:text-gold transition-colors duration-200"
+        >
+          themidlandsafricanchoir@gmail.com
+        </a>
+      </p>
+
+      <!-- Copyright -->
+      <p class="text-sm opacity-75">
+        &copy; {currentYear} Midlands African Choir UK. All rights reserved.
+      </p>
+
+    </div>
+  </div>
+</footer>

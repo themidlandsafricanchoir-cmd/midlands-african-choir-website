@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/shared/SectionHero.astro';
+import PatternDivider from '../components/shared/PatternDivider.astro';
+---
+
+<BaseLayout
+  title="Join the Choir | T-MAC UK"
+  description="Interested in joining The Midlands African Choir UK? Find out how to attend a trial rehearsal and become part of T-MAC UK."
+  canonicalPath="/join"
+>
+
+  <!-- Hero -->
+  <SectionHero
+    title="Join the Choir"
+    subtitle="Sing with us — everyone is welcome."
+    backgroundImage="/images/placeholders/Join-choir.jpg"
+  />
+
+  <PatternDivider />
+
+  <!-- Main content -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-gold mb-6">Interested in Joining T-MAC UK?</h2>
+      </div>
+
+      <div class="space-y-6 text-cream/80 text-lg leading-relaxed">
+        <p>
+          If you are interested in joining the choir, you would be most welcome to join us for one or two trial rehearsals. We are an auditioning choir — however, our auditions are informal, relaxed, and designed to help us understand your voice rather than to test you under pressure.
+        </p>
+
+        <p>
+          Whilst it is an advantage to be able to read music, we are very supportive of those who do not. Whatever your experience, you can be assured that you will receive a very warm welcome.
+        </p>
+      </div>
+
+      <PatternDivider variant="adinkra" />
+
+      <!-- What to expect -->
+      <div class="mt-12 mb-12">
+        <h3 class="font-serif text-2xl text-gold mb-6">What to Expect</h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            { icon: '🎵', text: 'A warm and friendly atmosphere' },
+            { icon: '🎤', text: 'An informal audition — relaxed and supportive' },
+            { icon: '📖', text: 'No requirement to read music' },
+            { icon: '🌍', text: 'A diverse group united by African music and culture' },
+            { icon: '📅', text: 'Regular weekly rehearsals' },
+            { icon: '💛', text: 'A supportive community — Ubuntu spirit' },
+          ].map(item => (
+            <div class="flex items-start gap-3 border border-gold/15 rounded-lg p-4">
+              <span class="text-xl flex-shrink-0" aria-hidden="true">{item.icon}</span>
+              <p class="text-cream/70 text-sm">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <PatternDivider />
+
+      <!-- Get in touch -->
+      <div class="mt-12 text-center">
+        <h3 class="font-serif text-2xl text-gold mb-6">Get in Touch</h3>
+        <p class="text-cream/70 text-lg leading-relaxed mb-8">
+          To arrange a visit or ask any questions, please email our General Coordinator <strong class="text-cream">Cecilia Li</strong> and/or our Music Director <strong class="text-cream">Stephen Tita</strong> in advance so we can ensure everything is ready for you.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="mailto:themidlandsafricanchoir@gmail.com?subject=Joining%20T-MAC%20UK"
+            class="bg-gold text-black font-bold px-8 py-4 rounded-lg hover:bg-gold/90 transition-colors min-h-[44px] inline-flex items-center justify-center text-lg"
+          >
+            Email Us to Join
+          </a>
+          <a
+            href="tel:07597698854"
+            class="border-2 border-gold text-gold font-bold px-8 py-4 rounded-lg hover:bg-gold/10 transition-colors min-h-[44px] inline-flex items-center justify-center text-lg"
+          >
+            Call 075 976 98854
+          </a>
+        </div>
+
+        <p class="text-cream/40 text-sm mt-6">
+          themidlandsafricanchoir@gmail.com
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

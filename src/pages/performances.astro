@@ -1,0 +1,193 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/shared/SectionHero.astro';
+import PatternDivider from '../components/shared/PatternDivider.astro';
+
+const performances = await getCollection('performances');
+
+// Sort: most recent first
+const sorted = performances.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Placeholder cards shown while real performances are being added
+const placeholders = [
+  { id: 1, title: 'Coming Soon', description: 'An upcoming T-MAC UK performance — check back soon.' },
+  { id: 2, title: 'Coming Soon', description: 'More performances being added — watch this space.' },
+  { id: 3, title: 'Coming Soon', description: 'Stay tuned for our latest recordings and live footage.' },
+  { id: 4, title: 'Coming Soon', description: 'New performances from T-MAC UK will appear here soon.' },
+];
+
+// We show real entries from the content collection; if none have a valid youtubeId we show placeholders
+const realVideos = sorted.filter(p => p.data.type === 'video' && p.data.youtubeId && p.data.youtubeId !== 'dQw4w9WgXcQ');
+const realAudio  = sorted.filter(p => p.data.type === 'audio' && p.data.audioUrl);
+const hasRealContent = realVideos.length > 0 || realAudio.length > 0;
+---
+
+<BaseLayout
+  title="Performances | T-MAC UK"
+  description="Watch and listen to performances by The Midlands African Choir UK — T-MAC UK."
+  canonicalPath="/performances"
+>
+
+  <!-- Hero -->
+  <SectionHero
+    title="Our Performances"
+    subtitle="Experience the music, culture and energy of T-MAC UK"
+    backgroundImage="/images/placeholders/performance-header.jpg"
+  />
+
+  <PatternDivider />
+
+  <!-- Intro -->
+  <section class="bg-black py-12 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-serif text-3xl text-gold mb-4">Live, Loud & Proud</h2>
+      <p class="text-cream/80 text-lg leading-relaxed">
+        From community festivals to concert halls, T-MAC UK brings the spirit of Africa to audiences
+        across the Midlands. Browse our performances below and subscribe on YouTube to stay updated.
+      </p>
+      <a
+        href="https://www.youtube.com/@midlandsafricanchoir"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 mt-6 bg-gold text-black font-bold px-6 py-3 rounded hover:bg-gold/90 transition-colors min-h-[44px]"
+      >
+        <!-- YouTube icon -->
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+        </svg>
+        Subscribe on YouTube
+      </a>
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- Video Performances -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-serif text-3xl text-gold mb-10 text-center">Video Performances</h2>
+
+      {realVideos.length > 0 ? (
+        <div class="grid md:grid-cols-2 gap-8">
+          {realVideos.map((p) => (
+            <div class="border border-gold/20 rounded-xl overflow-hidden bg-black hover:border-gold/50 transition-colors">
+              <div class="aspect-video">
+                <iframe
+                  src={`https://www.youtube.com/embed/${p.data.youtubeId}`}
+                  title={p.data.title}
+                  class="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="p-5">
+                <h3 class="font-serif text-xl text-gold mb-1">{p.data.title}</h3>
+                <p class="text-cream/50 text-xs uppercase tracking-wide mb-2">
+                  {new Date(p.data.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+                <p class="text-cream/70 text-sm leading-relaxed">{p.data.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <!-- Placeholder grid — shown until real YouTube IDs are added -->
+        <div class="grid md:grid-cols-2 gap-8">
+          {placeholders.map((ph) => (
+            <div class="border border-gold/20 rounded-xl overflow-hidden bg-black hover:border-gold/40 transition-colors group">
+              <!-- Placeholder video frame -->
+              <div class="aspect-video bg-gradient-to-br from-black via-gray-900 to-black flex flex-col items-center justify-center gap-4 relative">
+                <!-- Decorative gold ring -->
+                <div class="w-20 h-20 rounded-full border-2 border-gold/30 flex items-center justify-center group-hover:border-gold/60 transition-colors">
+                  <svg class="w-10 h-10 text-gold/40 group-hover:text-gold/70 transition-colors" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <span class="text-cream/30 text-sm uppercase tracking-widest">Video Coming Soon</span>
+                <!-- Kente accent line -->
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-terracotta via-gold to-forest opacity-40"></div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-serif text-xl text-gold/60 mb-1">{ph.title}</h3>
+                <p class="text-cream/40 text-sm leading-relaxed">{ph.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <PatternDivider />
+
+  <!-- Audio Performances -->
+  {realAudio.length > 0 && (
+    <section class="bg-black py-16 px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-serif text-3xl text-gold mb-10 text-center">Audio Recordings</h2>
+        <div class="flex flex-col gap-6">
+          {realAudio.map((p) => (
+            <div class="border border-gold/20 rounded-xl p-6 bg-black hover:border-gold/50 transition-colors">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex-1">
+                  <h3 class="font-serif text-xl text-gold mb-1">{p.data.title}</h3>
+                  <p class="text-cream/50 text-xs uppercase tracking-wide mb-2">
+                    {new Date(p.data.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </p>
+                  <p class="text-cream/70 text-sm leading-relaxed mb-4">{p.data.description}</p>
+                  <audio controls class="w-full">
+                    <source src={p.data.audioUrl} type="audio/mpeg" />
+                    Your browser does not support audio playback.
+                  </audio>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- Upload CTA -->
+  <section class="bg-black py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl text-gold mb-4">More Videos on the Way</h2>
+      <p class="text-cream/70 text-lg mb-6 leading-relaxed">
+        We are actively recording our rehearsals and performances. New content will be added here regularly —
+        follow us on social media so you never miss a performance.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://www.facebook.com/midlandsafricanchoir"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-gold/40 text-gold font-semibold px-6 py-3 rounded hover:bg-gold/10 transition-colors min-h-[44px] inline-flex items-center justify-center"
+        >
+          Facebook
+        </a>
+        <a
+          href="https://www.instagram.com/midlandsafricanchoir"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-gold/40 text-gold font-semibold px-6 py-3 rounded hover:bg-gold/10 transition-colors min-h-[44px] inline-flex items-center justify-center"
+        >
+          Instagram
+        </a>
+        <a
+          href="https://www.youtube.com/@midlandsafricanchoir"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-gold text-black font-bold px-6 py-3 rounded hover:bg-gold/90 transition-colors min-h-[44px] inline-flex items-center justify-center"
+        >
+          YouTube Channel
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

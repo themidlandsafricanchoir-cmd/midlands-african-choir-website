@@ -1,0 +1,62 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  bio: string;
+  image?: string;
+  lightBg?: boolean;
+}
+
+const { name, role, bio, image, lightBg = false } = Astro.props;
+
+const cardBg    = lightBg ? 'bg-white border border-gray-200'  : 'bg-black border border-gold/20';
+const nameCls   = lightBg ? 'text-navy'   : 'text-gold';
+const roleCls   = lightBg ? 'text-terracotta' : 'text-gold/70';
+const bioCls    = lightBg ? 'text-navy/80' : 'text-cream/80';
+const shadowCls = lightBg ? 'shadow-md hover:shadow-xl' : 'shadow-gold/10 hover:shadow-gold/20';
+---
+
+<div class={`rounded-xl overflow-hidden transition-shadow ${cardBg} ${shadowCls}`}>
+  <!-- Photo — full image, no cropping -->
+  {image ? (
+    <div class="w-full overflow-hidden">
+      <img
+        src={`/images/team/${image}`}
+        alt={`Photo of ${name}`}
+        width="600"
+        height="600"
+        loading="lazy"
+        class="w-full h-auto block"
+      />
+    </div>
+  ) : (
+    <div
+      class="w-full h-80 bg-gray-100 flex items-center justify-center"
+      role="img"
+      aria-label="Team member photo placeholder"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-24 h-24 text-gray-400"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+      </svg>
+    </div>
+  )}
+
+  <!-- Details -->
+  <div class="p-6">
+    <h3 class={`font-serif text-xl font-bold mb-1 ${nameCls}`}>
+      {name}
+    </h3>
+    <p class={`text-sm font-semibold uppercase tracking-wide mb-3 ${roleCls}`}>
+      {role}
+    </p>
+    <p class={`text-sm leading-relaxed ${bioCls}`}>
+      {bio}
+    </p>
+  </div>
+</div>

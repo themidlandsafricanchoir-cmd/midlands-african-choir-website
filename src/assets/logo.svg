@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="Midlands African Choir logo">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="#1A1A2E" stroke="#D4A017" stroke-width="3"/>
+  <!-- Decorative arc (choir arc) -->
+  <path d="M 25 75 Q 60 30 95 75" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round"/>
+  <!-- Choir figures (simplified silhouettes) -->
+  <circle cx="35" cy="72" r="6" fill="#FAF3E0"/>
+  <circle cx="50" cy="65" r="6" fill="#FAF3E0"/>
+  <circle cx="60" cy="62" r="6" fill="#FAF3E0"/>
+  <circle cx="70" cy="65" r="6" fill="#FAF3E0"/>
+  <circle cx="85" cy="72" r="6" fill="#FAF3E0"/>
+  <!-- Text: MAC -->
+  <text x="60" y="100" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="#D4A017" text-anchor="middle" letter-spacing="3">MAC</text>
+</svg>

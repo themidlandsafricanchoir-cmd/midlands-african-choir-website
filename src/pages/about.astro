@@ -1,0 +1,41 @@
+
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/shared/SectionHero.astro';
+import PatternDivider from '../components/shared/PatternDivider.astro';
+
+import OurStory from '../components/about/OurStory.astro';
+import MissionValues from '../components/about/MissionValues.astro';
+import CommunityPartnerships from '../components/about/CommunityPartnerships.astro';
+import Testimonials from '../components/about/Testimonials.astro';
+---
+
+<BaseLayout
+  title="About Us | Midlands African Choir UK"
+  description="Learn about the history, mission and community impact of the Midlands African Choir UK."
+  canonicalPath="/about"
+>
+  <SectionHero
+    title="About The Midlands African Choir UK"
+    subtitle="Celebrating African culture, heritage and community through music."
+    backgroundImage="/images/placeholders/about-instruments.png"
+    heightClass="h-[50vh]"
+    objectPosition="object-cover object-center"
+  />
+
+  <PatternDivider />
+
+  <OurStory />
+
+  <PatternDivider />
+
+  <MissionValues />
+
+  <PatternDivider />
+
+  <CommunityPartnerships />
+
+  <PatternDivider />
+
+  <Testimonials />
+</BaseLayout>
