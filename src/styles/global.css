@@ -9,6 +9,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   /* Do NOT set body background here — BaseLayout controls it via bg-cream class */
