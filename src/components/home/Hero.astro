@@ -1,21 +1,35 @@
 ---
-// Hero section for the Home page
-// Requirement 4.1: Full-viewport hero with background image, h1, tagline, and two CTA buttons
+// Hero slideshow — 6 images crossfading every 5 seconds
+const images = [
+  '/images/hero/hero-1.jpg',
+  '/images/hero/hero-2.jpg',
+  '/images/hero/hero-3.jpg',
+  '/images/hero/hero-4.jpg',
+  '/images/hero/hero-5.jpg',
+  '/images/hero/hero-6.jpg',
+];
+
+// Total cycle = 6 images × 5 seconds each = 30 seconds
+// Each image is visible for ~16.7% of the cycle (5s/30s)
+// Fade transition takes ~3.3% (1s/30s)
 ---
 
 <section class="relative min-h-[50vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-black">
-  <!-- Background image: contain on mobile (full image visible), cover on desktop (immersive) -->
-  <img
-    src="/images/placeholders/Choir rehearsal.jpeg"
-    alt="Midlands African Choir performing on stage"
-    width="1920"
-    height="1080"
-    loading="eager"
-    fetchpriority="high"
-    class="absolute inset-0 w-full h-full object-contain md:object-cover object-center"
-  />
 
-  <!-- Content -->
+  <!-- Slideshow images -->
+  {images.map((src, i) => (
+    <img
+      src={src}
+      alt={`T-MAC UK choir performance ${i + 1}`}
+      width="1920"
+      height="1080"
+      loading={i === 0 ? 'eager' : 'lazy'}
+      class={`hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-0`}
+      style={`animation-delay: ${i * 5}s;`}
+    />
+  ))}
+
+  <!-- Content overlay -->
   <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
     <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
       The Midlands African Choir UK
@@ -28,17 +42,31 @@
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
       <a
         href="/performances"
-        class="bg-gold text-navy font-bold px-8 py-3 rounded min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-base hover:bg-gold/90 transition-colors"
+        class="bg-gold text-black font-bold px-8 py-3 rounded min-h-[44px] inline-flex items-center justify-center text-base hover:bg-gold/90 transition-colors"
       >
         Watch Performances
       </a>
-
       <a
         href="/join"
-        class="border-2 border-cream text-cream font-bold px-8 py-3 rounded min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-base hover:bg-cream hover:text-navy transition-colors"
+        class="border-2 border-white text-white font-bold px-8 py-3 rounded min-h-[44px] inline-flex items-center justify-center text-base hover:bg-white hover:text-black transition-colors"
       >
         Join the Choir
       </a>
     </div>
   </div>
+
 </section>
+
+<style>
+  @keyframes heroFade {
+    0%     { opacity: 0; }
+    3.3%   { opacity: 1; }
+    16.7%  { opacity: 1; }
+    20%    { opacity: 0; }
+    100%   { opacity: 0; }
+  }
+
+  .hero-slide {
+    animation: heroFade 30s infinite;
+  }
+</style>
