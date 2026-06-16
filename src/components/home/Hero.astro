@@ -3,13 +3,12 @@
 const images = [
   '/images/hero/hero-1.jpg',
   '/images/hero/hero-2.jpg',
-  '/images/hero/hero-3.jpg',
   '/images/hero/hero-4.jpg',
   '/images/hero/hero-5.jpg',
   '/images/hero/hero-6.jpg',
 ];
 
-// Total cycle = 6 images × 5 seconds each = 30 seconds
+// Total cycle = 5 images × 5 seconds each = 25 seconds
 // Each image is visible for ~16.7% of the cycle (5s/30s)
 // Fade transition takes ~3.3% (1s/30s)
 ---
@@ -60,13 +59,13 @@ const images = [
 <style>
   @keyframes heroFade {
     0%     { opacity: 0; }
-    3.3%   { opacity: 1; }
-    16.7%  { opacity: 1; }
-    20%    { opacity: 0; }
+    4%     { opacity: 1; }
+    20%    { opacity: 1; }
+    24%    { opacity: 0; }
     100%   { opacity: 0; }
   }
 
   .hero-slide {
-    animation: heroFade 30s infinite;
+    animation: heroFade 25s infinite;
   }
 </style>
