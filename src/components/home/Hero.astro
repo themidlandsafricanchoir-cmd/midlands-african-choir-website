@@ -13,7 +13,7 @@ const images = [
 // Fade transition takes ~3.3% (1s/30s)
 ---
 
-<section class="relative min-h-[50vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-black">
+<section class="relative min-h-[50vh] md:min-h-[80vh] lg:min-h-screen flex flex-col justify-end overflow-hidden bg-black">
 
   <!-- Slideshow images -->
   {images.map((src, i) => (
@@ -29,7 +29,7 @@ const images = [
   ))}
 
   <!-- Content overlay -->
-  <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+  <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-auto pb-16">
     <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
       The Midlands African Choir UK
     </h1>
