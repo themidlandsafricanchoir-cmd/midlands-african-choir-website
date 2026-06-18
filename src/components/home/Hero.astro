@@ -23,7 +23,7 @@ const images = [
       width="1920"
       height="1080"
       loading={i === 0 ? 'eager' : 'lazy'}
-      class={`hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-0`}
+      class={`hero-slide absolute inset-0 w-full h-full object-contain md:object-cover object-center opacity-0`}
       style={`animation-delay: ${i * 5}s;`}
     />
   ))}
