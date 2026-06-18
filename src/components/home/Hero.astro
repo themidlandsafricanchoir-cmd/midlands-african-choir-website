@@ -13,28 +13,31 @@ const images = [
 // Fade transition takes ~3.3% (1s/30s)
 ---
 
-<section class="relative min-h-[50vh] md:min-h-[80vh] lg:min-h-screen flex flex-col justify-end overflow-hidden bg-black">
+<section class="relative flex flex-col overflow-hidden bg-black">
 
-  <!-- Slideshow images -->
-  {images.map((src, i) => (
-    <img
-      src={src}
-      alt={`T-MAC UK choir performance ${i + 1}`}
-      width="1920"
-      height="1080"
-      loading={i === 0 ? 'eager' : 'lazy'}
-      class={`hero-slide absolute inset-0 w-full h-full object-contain md:object-cover object-center opacity-0`}
-      style={`animation-delay: ${i * 5}s;`}
-    />
-  ))}
+  <!-- Image area -->
+  <div class="relative min-h-[40vh] md:min-h-[80vh] lg:min-h-screen flex-shrink-0">
+    <!-- Slideshow images -->
+    {images.map((src, i) => (
+      <img
+        src={src}
+        alt={`T-MAC UK choir performance ${i + 1}`}
+        width="1920"
+        height="1080"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        class={`hero-slide absolute inset-0 w-full h-full object-contain md:object-cover object-center opacity-0`}
+        style={`animation-delay: ${i * 5}s;`}
+      />
+    ))}
+  </div>
 
-  <!-- Content overlay -->
-  <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-auto pb-16">
-    <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+  <!-- Content: below image on mobile, overlaid at bottom on desktop -->
+  <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto py-8 md:absolute md:inset-x-0 md:bottom-0 md:pb-16 md:pt-0">
+    <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 md:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
       The Midlands African Choir UK
     </h1>
 
-    <p class="text-white text-lg md:text-xl lg:text-2xl mb-10 max-w-2xl mx-auto drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+    <p class="text-white text-lg md:text-xl lg:text-2xl mb-10 max-w-2xl mx-auto md:drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
       Celebrating African heritage through the power of choral music in the Midlands
     </p>
 
