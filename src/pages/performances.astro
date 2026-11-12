@@ -3,6 +3,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHero from '../components/shared/SectionHero.astro';
 import PatternDivider from '../components/shared/PatternDivider.astro';
+import { findEventImage } from '../lib/eventAssets';
+
+const concertFlier = findEventImage('festive-dinner-2026', ['flier']);
 
 const performances = await getCollection('performances');
 
@@ -49,16 +52,67 @@ const hasRealContent = realVideos.length > 0 || realAudio.length > 0;
       </div>
 
       <!-- Our African Dream: main feature -->
-      <a
-        href="/events/our-african-dream"
-        class="block border-2 border-gold rounded-2xl p-8 mb-8 text-center hover:bg-gold/5 transition-colors"
-      >
-        <span class="inline-block bg-gold text-black text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Our First Official Concert</span>
-        <h3 class="font-serif text-2xl md:text-3xl text-gold mb-2">Our African Dream: Tales Around the Fireside</h3>
-        <p class="text-cream/80 mb-1">A Community Fundraising Soiree</p>
-        <p class="text-cream/80 mb-4">Saturday 28 November 2026, 5:00 PM · The Glamis Hall, Wellingborough · Free entry</p>
-        <span class="text-gold font-semibold underline">Event details and free tickets →</span>
-      </a>
+      <div class={`border-2 border-gold rounded-2xl overflow-hidden mb-8 ${concertFlier ? 'md:grid md:grid-cols-2' : ''}`}>
+        {concertFlier && (
+          <a href="/events/our-african-dream" class="block bg-black" aria-label="View details for Our African Dream: Tales Around the Fireside">
+            <img
+              src={concertFlier}
+              alt="Flier for Our African Dream: Tales Around the Fireside, Saturday 28 November 2026, The Glamis Hall, Wellingborough"
+              width="800"
+              height="1000"
+              loading="lazy"
+              class="w-full h-full object-contain md:object-cover"
+            />
+          </a>
+        )}
+        <div class="p-8 flex flex-col justify-center">
+          <span class="self-start bg-gold text-black text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Our First Official Concert</span>
+          <h3 class="font-serif text-2xl md:text-3xl text-gold mb-2">Our African Dream: Tales Around the Fireside</h3>
+          <p class="text-cream/60 text-sm uppercase tracking-wide mb-5">A Community Fundraising Soiree</p>
+
+          <div class="space-y-3 text-cream/80 text-sm mb-6">
+            <div class="flex items-start gap-3">
+              <span class="text-gold flex-shrink-0" aria-hidden="true">📅</span>
+              <p><strong class="text-cream">Saturday 28 November 2026</strong><br />5:00 PM</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-gold flex-shrink-0" aria-hidden="true">📍</span>
+              <p><strong class="text-cream">The Glamis Hall Community Centre</strong><br />Goldsmith Rd, Wellingborough NN8 3RU</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-gold flex-shrink-0" aria-hidden="true">🎟️</span>
+              <p><strong class="text-cream">Free entry</strong> · registration on Eventbrite required</p>
+            </div>
+          </div>
+
+          <p class="text-cream/70 text-sm leading-relaxed mb-3">
+            Join us for an evening of African music, storytelling and community, performed by The Midlands African Choir UK. This is our first official concert and end of year gala, as well as a community fundraising soiree. Children are welcome.
+          </p>
+          <p class="text-cream/70 text-sm leading-relaxed mb-3">
+            Expect two sets from the choir, guest artist Obase Aboli Music, and poetry, folklore tales and games.
+          </p>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">
+            Hosted by Kilimanjaro Live (Lifting African Voices). Funded by The National Lottery Community Fund and Wellingborough Town Council.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a
+              href="https://www.eventbrite.com/e/our-african-dream-tales-around-the-fireside-tickets-2003259650541?aff=oddtdtcreator"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-gold text-black font-bold px-6 py-3 rounded-lg hover:bg-gold/90 transition-colors min-h-[44px] inline-flex items-center justify-center text-sm"
+            >
+              Reserve your free ticket
+            </a>
+            <a
+              href="/events/our-african-dream"
+              class="border border-gold/40 text-gold font-semibold px-6 py-3 rounded-lg hover:bg-gold/10 transition-colors min-h-[44px] inline-flex items-center justify-center text-sm"
+            >
+              Event details
+            </a>
+          </div>
+        </div>
+      </div>
 
       <!-- Commonwealth Chorale Festival -->
       <div class="border border-gold/30 rounded-2xl overflow-hidden md:grid md:grid-cols-2 gap-0 hover:border-gold/60 transition-colors">
