@@ -1,0 +1,34 @@
+---
+/**
+ * Both funder logos at an equal size on a clear (white) background.
+ * Logos are shown exactly as supplied: no filters, opacity or recolouring.
+ * If a file hasn't been uploaded yet, the funder's name is shown instead.
+ */
+import { getFunderLogos } from '../../lib/eventAssets';
+
+interface Props {
+  /** Extra classes for the wrapper */
+  class?: string;
+}
+
+const { class: extra = '' } = Astro.props;
+const { lottery, council } = getFunderLogos();
+const logos = [lottery, council];
+---
+
+<ul class={`flex flex-col sm:flex-row items-center justify-center gap-4 ${extra}`} aria-label="Our funders">
+  {logos.map((logo) => (
+    <li class="bg-white rounded-lg w-64 h-28 p-4 flex items-center justify-center">
+      {logo.src ? (
+        <img
+          src={logo.src}
+          alt={logo.name}
+          loading="lazy"
+          class="max-w-full max-h-full w-auto h-auto object-contain"
+        />
+      ) : (
+        <span class="text-black font-semibold text-center text-sm">{logo.name}</span>
+      )}
+    </li>
+  ))}
+</ul>

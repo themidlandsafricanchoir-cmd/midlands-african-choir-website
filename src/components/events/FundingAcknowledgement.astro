@@ -1,0 +1,26 @@
+---
+import FunderLogos from './FunderLogos.astro';
+import { FUNDING_STATEMENT } from '../../lib/eventAssets';
+
+interface Props {
+  /** 'top' = prominent panel near the start of the page; 'footer' = closing panel */
+  variant?: 'top' | 'footer';
+  /** Override the statement text */
+  statement?: string;
+}
+
+const { variant = 'top', statement = FUNDING_STATEMENT } = Astro.props;
+const isTop = variant === 'top';
+---
+
+<section
+  class={`bg-black px-4 ${isTop ? 'py-8' : 'py-12'}`}
+  aria-label="Funding acknowledgement"
+>
+  <div class="max-w-4xl mx-auto border border-gold/40 rounded-2xl p-6 md:p-8 text-center">
+    <p class={`text-cream ${isTop ? 'text-lg md:text-xl' : 'text-base md:text-lg'} font-medium mb-6`}>
+      {statement}
+    </p>
+    <FunderLogos />
+  </div>
+</section>

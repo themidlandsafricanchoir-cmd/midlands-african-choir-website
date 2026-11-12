@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PatternDivider from '../../components/shared/PatternDivider.astro';
+import PhotoGallery from '../../components/events/PhotoGallery.astro';
+import { findEventImage } from '../../lib/eventAssets';
+
+const slug = 'festival-of-lights-2026';
+const eventName = 'Wellingborough Festival of Lights 2026';
+const posterSrc = findEventImage(slug, ['poster']);
+const hasPoster = Boolean(posterSrc);
+---
+
+<BaseLayout
+  title="Wellingborough Festival of Lights 2026 | T-MAC UK"
+  description="Recap: The Midlands African Choir UK performed at the Wellingborough Festival of Lights 2026, Saturday 31 October 2026."
+  canonicalPath={`/events/${slug}`}
+  ogImage={hasPoster ? `https://www.themidlandsafricanchoir.co.uk${posterSrc}` : undefined}
+>
+
+  <!-- Header -->
+  <section class="bg-black pt-16 pb-12 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-xs uppercase tracking-widest text-gold/60 mb-3">Event Recap</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-gold leading-tight mb-4">
+        Wellingborough Festival of Lights 2026
+      </h1>
+      <p class="text-cream text-lg mb-2">
+        <time datetime="2026-10-31">Saturday 31 October 2026</time>
+      </p>
+      <p class="font-serif italic text-cream/80 text-xl md:text-2xl">
+        &ldquo;Unity in Light &ndash; Bringing Our Community Together&rdquo;
+      </p>
+    </div>
+  </section>
+
+  <PatternDivider />
+
+  <!-- Summary + poster -->
+  <section class="bg-black py-16 px-4">
+    <div class={`max-w-5xl mx-auto ${hasPoster ? 'md:grid md:grid-cols-3 gap-10 items-start' : ''}`}>
+      <div class={hasPoster ? 'md:col-span-2' : 'max-w-3xl mx-auto'}>
+        <h2 class="font-serif text-3xl text-gold mb-5">About the Festival</h2>
+        <p class="text-cream/80 text-lg leading-relaxed mb-5">
+          The Wellingborough Festival of Lights 2026 was hosted by the
+          <strong class="text-cream">Wellingborough District Hindu Association</strong>, in partnership with
+          North Northamptonshire Council, Wellingborough Town Council and others.
+        </p>
+        <p class="text-cream/80 text-lg leading-relaxed">
+          The Midlands African Choir UK performed on stage. Audiences enjoyed the energy, colour and joy of our performance.
+        </p>
+      </div>
+
+      {hasPoster && (
+        <figure class="mt-10 md:mt-0">
+          <img
+            src={posterSrc}
+            alt="Official poster for the Wellingborough Festival of Lights 2026, themed Unity in Light"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-auto rounded-xl border border-gold/30"
+          />
+          <figcaption class="mt-2 text-center text-cream/50 text-xs">Festival poster</figcaption>
+        </figure>
+      )}
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- Pull quote -->
+  <section class="bg-black py-16 px-4">
+    <figure class="max-w-3xl mx-auto border border-gold/30 rounded-xl p-8 md:p-10 relative">
+      <span class="font-serif text-6xl text-gold/30 absolute top-2 left-5" aria-hidden="true">&ldquo;</span>
+      <blockquote class="mt-6 text-cream/90 text-xl md:text-2xl leading-relaxed italic font-serif">
+        Your performances brought energy, colour and joy to the celebrations, helping make the festival such a positive and memorable experience for the public.
+      </blockquote>
+      <figcaption class="mt-6 text-gold font-semibold text-sm">
+        &mdash; Wellingborough District Hindu Association
+      </figcaption>
+    </figure>
+  </section>
+
+  <PatternDivider />
+
+  <!-- Gallery -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-10 text-center">Photo Gallery</h2>
+      <PhotoGallery slug={slug} eventName={eventName} />
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- CTA -->
+  <section class="bg-black py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl md:text-3xl text-gold mb-4">Want us at your event?</h2>
+      <p class="text-cream/70 text-lg mb-8">Festivals, celebrations and community events &mdash; we bring the music.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/book" class="bg-gold text-black font-bold px-8 py-3 rounded min-h-[44px] inline-flex items-center justify-center hover:bg-gold/90 transition-colors">Book T-MAC UK</a>
+        <a href="/performances" class="border border-gold/40 text-gold font-semibold px-8 py-3 rounded min-h-[44px] inline-flex items-center justify-center hover:bg-gold/10 transition-colors">All Performances</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

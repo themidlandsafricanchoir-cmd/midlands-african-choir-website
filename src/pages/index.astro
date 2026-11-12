@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import AboutSummary from '../components/home/AboutSummary.astro';
 import PatternDivider from '../components/shared/PatternDivider.astro';
+import ConcertBanner from '../components/home/ConcertBanner.astro';
+import FundedByStrip from '../components/events/FundedByStrip.astro';
 ---
 
 <BaseLayout
@@ -10,6 +12,9 @@ import PatternDivider from '../components/shared/PatternDivider.astro';
   description="Celebrating African heritage through music, culture and community in the Midlands."
   canonicalPath="/"
 >
+  <!-- 0. First official concert banner (auto-hides after 28 Nov 2026) -->
+  <ConcertBanner />
+
   <!-- 1. Full-screen hero with choir photo -->
   <Hero />
 
@@ -114,6 +119,32 @@ import PatternDivider from '../components/shared/PatternDivider.astro';
     </div>
   </section>
 
+  <!-- 9b. Event highlights -->
+  <PatternDivider variant="adinkra" />
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-10">Event Highlights</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href="/events/festival-of-lights-2026" class="border border-gold/20 rounded-xl p-6 hover:border-gold/60 transition-colors block">
+          <p class="text-xs uppercase tracking-widest text-gold/60 mb-2">Event Recap · 31 October 2026</p>
+          <h3 class="font-serif text-xl text-gold mb-2">Wellingborough Festival of Lights 2026</h3>
+          <p class="text-cream/70 text-sm leading-relaxed mb-3">
+            We performed on stage and brought energy, colour and joy to the celebrations.
+          </p>
+          <span class="text-gold text-sm font-medium">See the photos →</span>
+        </a>
+        <a href="/events/rehearsal-day-2026" class="border border-gold/20 rounded-xl p-6 hover:border-gold/60 transition-colors block">
+          <p class="text-xs uppercase tracking-widest text-gold/60 mb-2">Event Recap · 26 September 2026</p>
+          <h3 class="font-serif text-xl text-gold mb-2">Rehearsal Day</h3>
+          <p class="text-cream/70 text-sm leading-relaxed mb-3">
+            Voices together. Culture celebrated. Community connected.
+          </p>
+          <span class="text-gold text-sm font-medium">See the photos →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- 10. Pattern divider -->
   <PatternDivider />
 
@@ -133,5 +164,8 @@ import PatternDivider from '../components/shared/PatternDivider.astro';
       </a>
     </div>
   </section>
+
+  <!-- 12. Funded by -->
+  <FundedByStrip />
 
 </BaseLayout>

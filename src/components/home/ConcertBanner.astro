@@ -1,0 +1,36 @@
+---
+/**
+ * Homepage banner for the first official concert.
+ * Hidden automatically after 28 November 2026 (end of day, UK time):
+ *  - at build time (not rendered once the date has passed), and
+ *  - in the browser via the inline check below, because the site is static and
+ *    a page built earlier would otherwise keep showing it until the next deploy.
+ */
+const HIDE_AFTER = '2026-11-29T00:00:00Z'; // 28 Nov ends at 00:00 on 29 Nov (GMT in November)
+const show = Date.now() < new Date(HIDE_AFTER).getTime();
+---
+
+{show && (
+  <a
+    id="concert-banner"
+    data-hide-after={HIDE_AFTER}
+    href="/events/our-african-dream"
+    class="block bg-gold text-black text-center px-4 py-4 md:py-5 hover:bg-gold/90 transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
+  >
+    <span class="block text-xs font-bold uppercase tracking-widest mb-1">Our First Official Concert</span>
+    <span class="block font-serif text-xl md:text-3xl font-bold leading-tight">
+      Our First Official Concert, Sat 28 Nov, 5pm. Free tickets
+    </span>
+    <span class="block text-sm md:text-base font-semibold underline mt-1">
+      Our African Dream: Tales Around the Fireside &rarr;
+    </span>
+  </a>
+)}
+
+<script>
+  const banner = document.getElementById('concert-banner');
+  const hideAfter = banner?.getAttribute('data-hide-after');
+  if (banner && hideAfter && Date.now() >= new Date(hideAfter).getTime()) {
+    banner.remove();
+  }
+</script>

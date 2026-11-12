@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PatternDivider from '../../components/shared/PatternDivider.astro';
+import FundingAcknowledgement from '../../components/events/FundingAcknowledgement.astro';
+import { findEventImage } from '../../lib/eventAssets';
+
+const siteUrl = 'https://www.themidlandsafricanchoir.co.uk';
+const slug = 'our-african-dream';
+const title = 'Our African Dream: Tales Around the Fireside';
+const ticketUrl =
+  'https://www.eventbrite.com/e/our-african-dream-tales-around-the-fireside-tickets-2003259650541?aff=oddtdtcreator';
+const mapsUrl =
+  'https://www.google.com/maps/search/?api=1&query=The+Glamis+Hall+Community+Centre%2C+Goldsmith+Rd%2C+Wellingborough+NN8+3RU';
+const email = 'themidlandsafricanchoir@gmail.com';
+
+const flierSrc = findEventImage('festive-dinner-2026', ['flier']);
+const hasFlier = Boolean(flierSrc);
+
+const eventJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: title,
+  description:
+    'A community fundraising soiree: an evening of African music, storytelling and community, performed by The Midlands African Choir UK.',
+  startDate: '2026-11-28T17:00:00+00:00',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  isAccessibleForFree: true,
+  ...(hasFlier && { image: [`${siteUrl}${flierSrc}`] }),
+  location: {
+    '@type': 'Place',
+    name: 'The Glamis Hall Community Centre',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Goldsmith Rd',
+      addressLocality: 'Wellingborough',
+      postalCode: 'NN8 3RU',
+      addressCountry: 'GB',
+    },
+  },
+  offers: {
+    '@type': 'Offer',
+    url: ticketUrl,
+    price: '0',
+    priceCurrency: 'GBP',
+    availability: 'https://schema.org/InStock',
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Kilimanjaro Live (Lifting African Voices)',
+  },
+  performer: [
+    { '@type': 'MusicGroup', name: 'The Midlands African Choir UK', url: siteUrl },
+    { '@type': 'MusicGroup', name: 'Obase Aboli Music' },
+  ],
+};
+
+const btnPrimary =
+  'bg-gold text-black font-bold px-8 py-4 rounded-md text-lg min-h-[44px] inline-flex items-center justify-center hover:bg-gold/90 transition-colors';
+---
+
+<BaseLayout
+  title="Our African Dream: Tales Around the Fireside | T-MAC UK"
+  description="Our First Official Concert. Saturday 28 November 2026, 5pm, The Glamis Hall, Wellingborough. Free entry. Reserve your free ticket."
+  canonicalPath={`/events/${slug}`}
+  ogImage={hasFlier ? `${siteUrl}${flierSrc}` : undefined}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(eventJsonLd)} />
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="bg-black pt-12 pb-10 px-4">
+    <div class={`max-w-6xl mx-auto ${hasFlier ? 'md:grid md:grid-cols-2 gap-10 items-center' : 'max-w-3xl text-center'}`}>
+
+      {hasFlier && (
+        <div class="mb-8 md:mb-0">
+          <img
+            src={flierSrc}
+            alt="Flier for Our African Dream: Tales Around the Fireside, Saturday 28 November 2026, The Glamis Hall, Wellingborough"
+            width="800"
+            height="1000"
+            loading="eager"
+            fetchpriority="high"
+            class="w-full h-auto max-h-[80vh] object-contain rounded-xl border border-gold/30 mx-auto"
+          />
+        </div>
+      )}
+
+      <div>
+        <span class="inline-block bg-gold text-black text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+          Our First Official Concert
+        </span>
+        <h1 class="font-serif text-4xl md:text-5xl text-gold leading-tight mb-3">{title}</h1>
+        <p class="font-serif italic text-cream/80 text-xl md:text-2xl mb-8">A Community Fundraising Soiree</p>
+
+        <ul class={`space-y-4 text-cream/90 mb-8 ${hasFlier ? '' : 'inline-block text-left'}`}>
+          <li class="flex items-start gap-3">
+            <span aria-hidden="true">📅</span>
+            <span><strong class="text-cream">Saturday 28 November 2026</strong>, 5:00 PM</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span aria-hidden="true">📍</span>
+            <span>
+              <strong class="text-cream">The Glamis Hall Community Centre</strong><br />
+              Goldsmith Rd, Wellingborough NN8 3RU<br />
+              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="text-gold underline hover:text-gold/80">
+                View on Google Maps
+              </a>
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span aria-hidden="true">🎟️</span>
+            <span><strong class="text-cream">Free entry</strong></span>
+          </li>
+        </ul>
+
+        <a href={ticketUrl} target="_blank" rel="noopener noreferrer" class={btnPrimary}>
+          Reserve your free ticket
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funding acknowledgement (prominent, near top) -->
+  <FundingAcknowledgement variant="top" />
+
+  <PatternDivider />
+
+  <!-- ── 1. About the evening ─────────────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-5">About the Evening</h2>
+      <p class="text-cream/80 text-lg leading-relaxed">
+        An evening of African music, storytelling and community, performed by The Midlands African Choir UK.
+      </p>
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- ── 2 & 3. Guest artist and host ─────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+      <div class="border border-gold/30 rounded-xl p-8">
+        <h2 class="font-serif text-2xl text-gold mb-3">Guest Artist</h2>
+        <p class="text-cream text-lg font-semibold">Obase Aboli Music</p>
+      </div>
+      <div class="border border-gold/30 rounded-xl p-8">
+        <h2 class="font-serif text-2xl text-gold mb-3">Hosted by</h2>
+        <p class="text-cream text-lg font-semibold">Kilimanjaro Live</p>
+        <p class="text-cream/70">Lifting African Voices</p>
+      </div>
+    </div>
+  </section>
+
+  <PatternDivider />
+
+  <!-- ── 4. Getting there ─────────────────────────────────── -->
+  <section class="bg-black py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl md:text-4xl text-gold mb-5">Getting There</h2>
+      <address class="not-italic text-cream/90 text-lg leading-relaxed mb-4">
+        <strong class="text-cream">The Glamis Hall Community Centre</strong><br />
+        Goldsmith Rd, Wellingborough NN8 3RU
+      </address>
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="text-gold underline hover:text-gold/80">
+        Open in Google Maps
+      </a>
+      <p class="text-cream/70 mt-6">
+        Tickets are free, but registration on Eventbrite is required.
+      </p>
+    </div>
+  </section>
+
+  <PatternDivider variant="adinkra" />
+
+  <!-- ── 6. Contact ───────────────────────────────────────── -->
+  <section class="bg-black py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-3xl text-gold mb-4">Contact</h2>
+      <p class="text-cream/80 text-lg">
+        Questions about the event? Email
+        <a href={`mailto:${email}`} class="text-gold underline hover:text-gold/80">{email}</a>
+      </p>
+    </div>
+  </section>
+
+  <PatternDivider />
+
+  <!-- Bottom CTA -->
+  <section class="bg-black py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-3xl text-gold mb-6">Join us on Saturday 28 November</h2>
+      <a href={ticketUrl} target="_blank" rel="noopener noreferrer" class={btnPrimary}>
+        Reserve your free ticket
+      </a>
+    </div>
+  </section>
+
+  <!-- Funding acknowledgement (again, at the foot of the page) -->
+  <FundingAcknowledgement variant="footer" />
+
+  <!-- Spacer so the sticky mobile button never covers the footer -->
+  <div class="h-20 md:hidden bg-black" aria-hidden="true"></div>
+
+  <!-- Sticky button, mobile only -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-black/95 border-t border-gold/40 p-3">
+    <a
+      href={ticketUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-gold text-black font-bold w-full rounded-md min-h-[48px] inline-flex items-center justify-center hover:bg-gold/90 transition-colors"
+    >
+      Reserve your free ticket
+    </a>
+  </div>
+
+</BaseLayout>

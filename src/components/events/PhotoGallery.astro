@@ -1,0 +1,113 @@
+---
+/**
+ * Responsive photo grid with an accessible lightbox (native <dialog>).
+ * Reads /public/images/events/<slug>/ at build time. Images named poster.* / flier.*
+ * are excluded (they are shown separately as the secondary image).
+ */
+import { listEventPhotos } from '../../lib/eventAssets';
+
+interface Props {
+  /** Folder name under /public/images/events/ */
+  slug: string;
+  /** Used to build alt text, e.g. "Wellingborough Festival of Lights 2026" */
+  eventName: string;
+  /** Optional per-photo alt text, in the same order as the sorted files */
+  alts?: string[];
+}
+
+const { slug, eventName, alts = [] } = Astro.props;
+const photos = listEventPhotos(slug).map((src, i) => ({
+  src,
+  alt: alts[i] ?? `The Midlands African Choir UK at ${eventName}, photo ${i + 1}`,
+}));
+const galleryId = `gallery-${slug}`;
+---
+
+{photos.length === 0 ? (
+  <p class="text-center text-cream/50 italic">Photos coming soon.</p>
+) : (
+  <div data-gallery={galleryId}>
+    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      {photos.map((p, i) => (
+        <li>
+          <button
+            type="button"
+            data-index={i}
+            class="block w-full aspect-[4/3] overflow-hidden rounded-lg border border-gold/20 hover:border-gold/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold transition-colors"
+            aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.alt}`}
+          >
+            <img
+              src={p.src}
+              alt={p.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    <dialog
+      class="m-0 p-0 w-full h-full max-w-none max-h-none bg-transparent backdrop:bg-black/90"
+      aria-label={`${eventName} photo viewer`}
+    >
+      <div class="relative w-full h-full flex items-center justify-center p-4 md:p-10" data-lightbox-bg>
+        <figure class="max-w-full max-h-full flex flex-col items-center">
+          <img data-lightbox-img src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded" />
+          <figcaption data-lightbox-caption class="mt-3 text-cream/80 text-sm text-center" aria-live="polite"></figcaption>
+        </figure>
+
+        <button type="button" data-close aria-label="Close photo viewer"
+          class="absolute top-4 right-4 bg-gold text-black rounded-full w-11 h-11 text-2xl leading-none font-bold hover:bg-gold/90">&times;</button>
+        <button type="button" data-prev aria-label="Previous photo"
+          class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-black/70 border border-gold text-gold rounded-full w-11 h-11 text-2xl hover:bg-gold hover:text-black">&#8249;</button>
+        <button type="button" data-next aria-label="Next photo"
+          class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-black/70 border border-gold text-gold rounded-full w-11 h-11 text-2xl hover:bg-gold hover:text-black">&#8250;</button>
+      </div>
+    </dialog>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((root) => {
+    const dialog = root.querySelector('dialog') as HTMLDialogElement;
+    const bigImg = root.querySelector('[data-lightbox-img]') as HTMLImageElement;
+    const caption = root.querySelector('[data-lightbox-caption]') as HTMLElement;
+    const thumbs = Array.from(root.querySelectorAll<HTMLButtonElement>('button[data-index]'));
+    let current = 0;
+
+    const show = (i: number) => {
+      current = (i + thumbs.length) % thumbs.length;
+      const thumb = thumbs[current].querySelector('img') as HTMLImageElement;
+      bigImg.src = thumb.src;
+      bigImg.alt = thumb.alt;
+      caption.textContent = `${thumb.alt} (${current + 1} of ${thumbs.length})`;
+    };
+
+    thumbs.forEach((btn, i) =>
+      btn.addEventListener('click', () => {
+        show(i);
+        dialog.showModal();
+      })
+    );
+
+    root.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+    root.querySelector('[data-prev]')?.addEventListener('click', () => show(current - 1));
+    root.querySelector('[data-next]')?.addEventListener('click', () => show(current + 1));
+
+    // Click on the dark area (not the image or buttons) closes the viewer
+    dialog.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      if (t === dialog || t.hasAttribute('data-lightbox-bg')) dialog.close();
+    });
+
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    // Return focus to the thumbnail that opened the viewer
+    dialog.addEventListener('close', () => thumbs[current]?.focus());
+  });
+</script>
